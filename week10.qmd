@@ -1,0 +1,30 @@
+---
+title: "Week10"
+format: html
+editor: visual
+---
+
+```{r}
+library(palmerpenguins)
+summary(penguins)
+```
+```{r}
+# Remove rows with NA values in the columns we want to plot
+penguins_clean <- na.omit(penguins[, c("flipper_length_mm", "body_mass_g", "species")])
+
+# Create color mapping
+species_colors <- c("Adelie" = "blue", "Chinstrap" = "green", "Gentoo" = "red")
+colors <- species_colors[penguins_clean$species]
+
+# Plot using base R
+plot(penguins_clean$flipper_length_mm, penguins_clean$body_mass_g,
+     col = colors,
+     pch = 19,
+     xlab = "Flipper Length (mm)",
+     ylab = "Body Mass (g)",
+     main = "Flipper Length vs. Body Mass")
+
+legend("bottomright", legend = names(species_colors), col = species_colors, pch = 19)
+
+```
+
